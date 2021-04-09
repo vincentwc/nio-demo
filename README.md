@@ -13,6 +13,17 @@ NIO 核心类：
   - 提供唯一与channel进行交互的方式
     - 读写Channel中的数据
     - 一块可以从中读取或写入的内存区域。被NIO包装成一个NIO Buffer对象，并提供一组便于操作内存的方法
+  - Buffer属性
+    - Capacity：容量
+        - 数组可以容纳的最大字节长度，超出则需要将其清空才能重新写入
+    - Position：位置
+        - 写模式：表示当前位置，初始位置为0，最大为capacity-1
+        - 读模式：重置为0
+    - Limit：上限
+        - 写模式：最多能往Buffer中写的数据量，此时等于Capacity
+        - 读模式：此时等于写模式下的Position的值
+    - Mark：标记
+        - 标记一个特定的Position的位置，可通过Buffer的Reset()方法恢复到标记位置
 - Selector 选择器|多路复用器
  - 四种就绪状态
     - OP_CONNECT：连接就绪。连接操作，Client端支持的一种操作
